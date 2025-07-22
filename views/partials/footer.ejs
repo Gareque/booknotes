@@ -1,0 +1,42 @@
+<!-- <footer></footer> -->
+
+<footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+    </ul>
+    <p class="text-center text-body-secondary">© 2025 Company, Inc</p>
+</footer>
+
+
+
+<script>
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+  crossorigin="anonymous"
+</script>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  toggle.addEventListener('change', () => {
+    const colorTheme = toggle.checked ? 'light' : 'dark';
+    html.setAttribute('data-bs-theme', colorTheme);
+    localStorage.setItem('theme', colorTheme); // Save preference
+  });
+
+  // Load saved theme on page load
+  const theme = localStorage.getItem('theme');
+  if (theme) {
+    html.setAttribute('data-bs-theme', theme);
+    toggle.checked = theme === 'light';
+  }
+</script>
+
+
+</body>
+</html>

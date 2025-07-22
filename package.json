@@ -1,0 +1,28 @@
+{
+  "name": "booknotes-project",
+  "version": "1.0.0",
+  "description": "Revise how to integrate public APIs into web projects.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gareque/booknotes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gareque/booknotes/issues"
+  },
+  "homepage": "https://github.com/Gareque/booknotes#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "node": "^20.19.4",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.3"
+  }
+}
