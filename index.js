@@ -28,59 +28,29 @@ db.connect();
 
 let items = [];
 
-//Set up the root path to show all books listed
-app.get("/", async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM books ORDER BY id ASC");
-    items = result.rows;
+const sortHandler = async (req, res) => {
+  const validFields = ["title", "author", "rating", "id"];
+  const { field } = req.params;
 
-    res.render("index.ejs", {
-      books: items,
-    });
+  if (!validFields.includes(field)) {
+    return res.status(400).send("Invalid sort field, please enter a valid option");
+  }
+
+  try {
+    const result = await db.query(`SELECT * FROM books ORDER BY ${field} ASC`);
+    res.render("Index.ejs", { books: result.rows });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).send("Error retrieving books");
   }
+};
+
+app.get("/", async (req, res) => {
+  req.params.field = "id";  //Injects the default sort field as the id
+  return sortHandler(req, res);
 });
 
-app.get("/title", async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM books ORDER BY title ASC")
-    items = result.rows;
-
-    res.render("index.ejs", {
-      books: items,
-    }); 
-  } catch (err) {
-      console.error(err);
-    }
-});
-
-app.get("/author", async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM books ORDER BY author ASC");
-    items = result.rows;
-
-    res.render("index.ejs", {
-      books: items,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-});
-
-app.get("/rating", async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM books ORDER BY rating ASC");
-    items = result.rows;
-
-    res.render("index.ejs", {
-      books: items,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-});
+app.get("/:field", sortHandler);
 
 // Show the form for editing book entries
 app.get("/books/:id/edit", async (req, res) => {
