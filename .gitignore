@@ -1,1 +1,5 @@
+# Infra Files
 node_modules
+
+# Environmental Files
+.env

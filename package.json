@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/Gareque/booknotes#readme",
   "dependencies": {
+    "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "method-override": "^3.0.0",
     "node": "^20.19.4",
     "nodemon": "^3.1.10",
     "pg": "^8.16.3"

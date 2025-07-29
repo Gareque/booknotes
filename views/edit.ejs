@@ -1,0 +1,79 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container d-flex justify-content-center">
+  <form
+    action="/books/<%= book.id %>?_method=PUT"
+    method="POST"
+    class="w-100 mt-5">
+
+    <div class="row mb-1">
+      <label for="title" class="col-sm-1 col-form-label">Title: </label>
+      <div class="col-sm-11">
+        <input
+          class="form-control"
+          type="text"
+          name="title"
+          value="<%= book.title %>"
+        />
+        <br />
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <label for="author" class="col-sm-1 col-form-label">Author: </label>
+      <div class="col-sm-11">
+        <input
+          class="form-control"
+          type="text"
+          name="author"
+          value="<%= book.author %>"
+        />
+        <br />
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <label for="rating" class="col-sm-1 col-form-label">Rating: </label>
+      <div class="col-sm-11">
+        <input
+          class="form-control"
+          type="number"
+          name="rating"
+          value="<%= book.rating %>"
+          step="0.1"
+          min="0"
+          max="10"
+        />
+        <br />
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <label for="rating" class="col-sm-1 col-form-label">Comments: </label>
+      <div class="col-sm-11">
+        <input
+          class="form-control"
+          type="text"
+          name="comments"
+          value="<%= book.comments %>"
+        />
+        <br />
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <label for="isbn" class="col-sm-1 col-form-label">ISBN: </label>
+      <div class="col-sm-11">
+        <input
+          class="form-control"
+          type="text"
+          name="isbn"
+          value="<%= book.isbn %>"
+        />
+        <br />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-secondary">Save Changes</button>
+  </form>
+</div>
+<%- include("partials/footer.ejs") %>

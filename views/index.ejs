@@ -1,19 +1,47 @@
 <%- include("partials/header.ejs") %>
 
-<div class="box m-5" id="heading">
-    <h1>Books I have read</h1>
-</div>
-
-<div class="box m-5">
+<div class="container my-5">
+  <h1 class="mb-4">Books I have read</h1>
+  <div class="row row-cols-1 row-cols-md-1 g-4 align-items-start">
     <% for(let book of books) { %>
-        <div class="book-entry">
-            <h2><%= book.title %></h2>
-            <p>Author: <%= book.author %></p>
-            <p>Rating: <%= book.rating %></p>
-            <p>Description: <%= book.comments %></p>
-            <p>ISBN: <%= book.isbn %></p>
+    <div class="col book-entry">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><%= book.title %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Author: <%= book.author %></h6>
+          <p class="card-text">Rating: <%= book.rating %></p>
+          <p class="card-text">Description: <%= book.comments %></p>
+          <p class="card-text">ISBN: <%= book.isbn %></p>
         </div>
-    <% } %>
+        <div class="card-footer d-flex justify-content-between">
+          <!-- Add in the buttons to carry out UD actions from CRUD -->
+          <div class="button-row mb-3">
+            <!-- Edit Button -->
+            <form
+              action="/books/<%= book.id %>/edit"
+              method="GET"
+              style="display: inline"
+            >
+              <button type="submit" class="button btn btn-secondary">Edit</button>
+            </form>
+            
+            <form
+              action="/delete/<%= book.id %>?_method=DELETE"
+              method="POST"
+              style="display: inline"
+            > 
+              <button type="submit" class="button btn btn-danger">
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <% } %>
+      <hr class="divider" />
+    </div>
+  </div>
 </div>
 
 <%- include("partials/footer.ejs") %>
