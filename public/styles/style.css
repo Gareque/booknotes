@@ -18,3 +18,35 @@ form.inline-form label input {
     margin-left: 5px;
     width: 100px;
 }
+
+.save {
+    background-color: orange;
+    border-color: orange;
+    color: black;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: orange !important;
+    border-color: orange;
+    color: black;
+    font-weight: bold;
+}
+
+.btn-danger {
+    background-color: orange !important;
+    border-color: orange; 
+    color: black;
+    font-weight: bold;
+}
+
+.nav-link.active {
+    background-color: orange !important;
+    border-color: orange;
+    color:black !important;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: orange;
+}

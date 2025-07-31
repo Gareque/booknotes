@@ -1,11 +1,7 @@
 <%- include("partials/header.ejs") %>
 
 <div class="container d-flex justify-content-center">
-  <form
-    action="/books/<%= book.id %>?_method=PUT"
-    method="POST"
-    class="w-100 mt-5">
-
+  <form action="/create" method="POST" class="w-100 mt-5">
     <div class="row mb-1">
       <label for="title" class="col-sm-1 col-form-label">Title: </label>
       <div class="col-sm-11">
@@ -13,7 +9,7 @@
           class="form-control"
           type="text"
           name="title"
-          value="<%= book.title %>"
+          placeholder="Books title"
         />
         <br />
       </div>
@@ -26,7 +22,7 @@
           class="form-control"
           type="text"
           name="author"
-          value="<%= book.author %>"
+          placeholder="Authors Name"
         />
         <br />
       </div>
@@ -39,7 +35,7 @@
           class="form-control"
           type="number"
           name="rating"
-          value="<%= book.rating %>"
+          placeholder="Book Rating"
           step="0.1"
           min="0"
           max="10"
@@ -49,13 +45,15 @@
     </div>
 
     <div class="row mb-1">
-      <label for="description" class="col-sm-1 col-form-label">Comments: </label>
+      <label for="description" class="col-sm-1 col-form-label"
+        >Comments:
+      </label>
       <div class="col-sm-11">
         <input
           class="form-control"
           type="text"
           name="comments"
-          value="<%= book.comments %>"
+          placeholder="Your comments"
         />
         <br />
       </div>
@@ -68,13 +66,15 @@
           class="form-control"
           type="text"
           name="isbn"
-          value="<%= book.isbn %>"
+          placeholder="The books ISBN"
         />
         <br />
       </div>
     </div>
-    <button type="submit" class="save btn btn-secondary">Save Changes</button>
+    <button type="submit" class="save btn btn-secondary">Create Entry</button>
+    <a href="/create" class="btn btn-secondary">Reset Form</a>Y
     <a href="/" class="btn btn-secondary">Cancel</a>
-  </form>
+</form>
 </div>
+
 <%- include("partials/footer.ejs") %>

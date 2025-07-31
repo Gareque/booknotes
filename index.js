@@ -38,7 +38,7 @@ const sortHandler = async (req, res) => {
 
   try {
     const result = await db.query(`SELECT * FROM books ORDER BY ${field} ASC`);
-    res.render("Index.ejs", { books: result.rows });
+    res.render("index.ejs", { books: result.rows });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error retrieving books");
@@ -48,6 +48,10 @@ const sortHandler = async (req, res) => {
 app.get("/", async (req, res) => {
   req.params.field = "id";  //Injects the default sort field as the id
   return sortHandler(req, res);
+});
+
+app.get("/create", async (req, res) => {
+  res.render("create");
 });
 
 app.get("/:field", sortHandler);
@@ -62,6 +66,19 @@ app.get("/books/:id/edit", async (req, res) => {
       return res.status(404).send("Book not found");
     }
     res.render("edit", { book });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Route for adding new books to the database
+app.post('/create', async (req, res) => {
+  const { title, author, rating, comments, isbn } = req.body;
+
+  try {
+    const result = await db.query("INSERT INTO books (title, author, rating, comments, isbn) VALUES ($1, $2, $3, $4, $5)", [title, author, rating, comments, isbn]);
+     res.redirect("/");
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");

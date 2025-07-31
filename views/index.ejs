@@ -1,7 +1,18 @@
 <%- include("partials/header.ejs") %>
 
 <div class="container my-5">
-  <h1 class="mb-4">Books I have read</h1>
+  <div class="row mb-2 align-items-center">
+    <div class="col-sm-4">
+      <h1 class="mb-0">Books I have read:</h1>
+    </div>
+    <div class="col-sm-6 text-left">
+      <form action="/create" method="GET" style="display: inline;">
+        <button type="submit" class="btn btn-primary">Add New Book</button>
+      </form>
+    </div>
+  </div>
+
+
   <div class="row row-cols-1 row-cols-md-1 g-4 align-items-start">
     <% for(let book of books) { %>
     <div class="col book-entry">
