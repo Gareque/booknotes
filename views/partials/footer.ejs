@@ -33,6 +33,27 @@
   }
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const coverImages = document.querySelectorAll(".cover-image");
+
+  coverImages.forEach(img => {
+    const isbn = img.dataset.isbn;
+    if (!isbn) return;
+
+    const url = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+
+    img.src = url;
+    img.style.display = "block";
+
+    img.onerror = () => {
+      img.style.display = "none"; // Hide broken images
+      console.log(`Cover not found for ISBN ${isbn}`);
+    };
+  });
+});
+</script>
+
 
 </body>
 </html>

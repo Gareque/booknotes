@@ -50,3 +50,11 @@ form.inline-form label input {
 .nav-link {
     color: orange;
 }
+
+.cover-image {
+    max-height: 150px;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    margin-right: 1rem;
+}
