@@ -12,46 +12,60 @@
     </div>
   </div>
 
-
   <div class="row row-cols-1 row-cols-md-1 g-4 align-items-start">
     <% for(let book of books) { %>
-    <div class="col book-entry">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title"><%= book.title %></h5>
-          <h6 class="card-subtitle mb-2 text-muted">Author: <%= book.author %></h6>
-          <p class="card-text">Rating: <%= book.rating %></p>
-          <p class="card-text">Description: <%= book.comments %></p>
-          <p class="card-text">ISBN: <%= book.isbn %></p>
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-          <!-- Add in the buttons to carry out UD actions from CRUD -->
-          <div class="button-row mb-3">
-            <!-- Edit Button -->
-            <form
-              action="/books/<%= book.id %>/edit"
-              method="GET"
-              style="display: inline"
-            >
-              <button type="submit" class="button btn btn-secondary">Edit</button>
-            </form>
-            
-            <form
-              action="/delete/<%= book.id %>?_method=DELETE"
-              method="POST"
-              style="display: inline"
-            > 
-              <button type="submit" class="button btn btn-danger">
-                Delete
-              </button>
-            </form>
+      <div class="col book-entry">
+        <div class="card h-100">
+          
+          <!-- START: Book Content and Cover Image -->
+          <div class="card-body d-flex">
+            <% if (book.coverUrl) { %>
+              <div class="me-3 flex-shrink-0">
+                <img
+                  src="<%= book.coverUrl %>"
+                  alt="Cover for <%= book.title %>"
+                  style="height: auto; max-height: 150px; width: auto;"
+                  class="img-fluid"
+                />
+              </div>
+            <% } %>
+
+            <div class="flex-grow-1">
+              <h5 class="card-title"><%= book.title %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">Author: <%= book.author %></h6>
+              <p class="card-text">Rating: <%= book.rating %></p>
+              <p class="card-text">Description: <%= book.comments %></p>
+              <p class="card-text">ISBN: <%= book.isbn %></p>
+            </div>
+          </div>
+          <!-- END: Book Content -->
+
+          <!-- Footer with Edit/Delete buttons -->
+          <div class="card-footer d-flex justify-content-between">
+            <div class="button-row mb-3">
+              <form
+                action="/books/<%= book.id %>/edit"
+                method="GET"
+                style="display: inline"
+              >
+                <button type="submit" class="button btn btn-secondary">Edit</button>
+              </form>
+
+              <form
+                action="/delete/<%= book.id %>?_method=DELETE"
+                method="POST"
+                style="display: inline"
+              >
+                <button type="submit" class="button btn btn-danger">
+                  Delete
+                </button>
+              </form>
+            </div>
           </div>
         </div>
+        <hr class="divider" />
       </div>
-
-      <% } %>
-      <hr class="divider" />
-    </div>
+    <% } %>
   </div>
 </div>
 

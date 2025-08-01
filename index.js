@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import pg from "pg";
 import dotenv from "dotenv";
 import methodOverride from "method-override";
+import axios from "axios";
 
 // Import the .env file
 dotenv.config();
@@ -33,12 +34,36 @@ const sortHandler = async (req, res) => {
   const { field } = req.params;
 
   if (!validFields.includes(field)) {
-    return res.status(400).send("Invalid sort field, please enter a valid option");
+    return res
+      .status(400)
+      .send("Invalid sort field, please enter a valid option");
   }
+
+
 
   try {
     const result = await db.query(`SELECT * FROM books ORDER BY ${field} ASC`);
-    res.render("index.ejs", { books: result.rows });
+    const books = result.rows;
+
+    // Add the book cover via API call to Open Library Cover
+    for (const book of books) {
+        const isbn = book.isbn;
+        const url = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+
+        try {
+          const response = await axios.head(url); // This will check the cover exists before processing
+          if (response.status === 200) {
+            // 200 confirms the image is found and so can proceed
+            book.coverUrl = url;
+          } else {
+            book.coverUrl = null;
+          }
+        } catch (err) {
+          book.coverUrl = null;
+        }
+      }
+
+    res.render("index.ejs", { books });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error retrieving books");
@@ -49,6 +74,7 @@ app.get("/", async (req, res) => {
   req.params.field = "id";  //Injects the default sort field as the id
   return sortHandler(req, res);
 });
+  
 
 app.get("/create", async (req, res) => {
   res.render("create");

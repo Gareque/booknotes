@@ -23,13 +23,13 @@
 
 - Ensure that the project has a structured directory and file organization - Done
 
-4. API Integration
-   Implement at least a GET endpoint to interact with your chosen API.
+4. API Integration - Done
+   Implement at least a GET endpoint to interact with your chosen API - Done
 
-- Use Axios to send HTTP requests to the API and handle responses.
+- Use Axios to send HTTP requests to the API and handle responses - Done
 
-5. Data Presentation - Partial
-   Design the application to present the book covers from the API and the data in your database a in a user-friendly way.
+5. Data Presentation - Done
+   Design the application to present the book covers from the API and the data in your database a in a user-friendly way - Done
 
 - Use appropriate HTML, CSS, and a templating engine like EJS - Done
 

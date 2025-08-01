@@ -1,19 +1,11 @@
-# Objectives
+# How to use this web app:
 
-Revise how to integrate public APIs into web projects.
-
-Gain more experience using Express/Node.js for server-side programming.
-
-Demonstrate ability to Create Read Update and Delete data in a PostgreSQL Database to persist data.
-
-# Example Ideas
-
-Use the Open Library Covers API to fetch book covers.
-
-Create a database to store books you have read.
-
-Have a way to add new data about books, update previous reviews and delete entries.
-
-Display this information from your database in a website like https://sive.rs/book
-
-Be able to sort your book entries by rating and recency.
+- First, clone the repo using git clone
+- cd into the repo and run npm i; this will install all of the required modules that are required for the app
+- npm install nodemon
+- Open package.json and ensure that beneath '"main": "index.js"' you enter:
+- - "type": "module"
+- Using PostgreSQL, set up a table in your database named 'books', using the details provided in queries.sql under 'Creating the table'
+- If desired, you may also insert some books into the table to begin with, using the examples provided under 'Inserting values into the table', also located in queries.sql
+- Run the application using nodemon .\index.js
+- navigate to localhost:3000/ on your browser
